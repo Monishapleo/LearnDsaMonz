@@ -134,6 +134,7 @@ public class ArrayBasic {
 
     }
 
+    //TWO POINTERS
     static void arrayReverseUsingWhile() {
         long[] arr = {5, 10, 15, 20, 25};
         int start = 0;
@@ -150,4 +151,21 @@ public class ArrayBasic {
             System.out.println(num);
         }
     }
+    //Move Zeros to End
+    //Input:  [0,1,0,3,12]
+    //Output: [1,3,12,0,0]
+
+    static void movZerosToEnd(int[] arr){
+        int j=0;
+        for(int i = 0 ; i<arr.length;i++){
+            if(arr[i]==0){
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+            System.out.println(arr);
+        }
+    }
+
+
 }
