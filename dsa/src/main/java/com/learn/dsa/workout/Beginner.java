@@ -6,14 +6,16 @@ import java.util.*;
 
 public class Beginner {
     public static void main(String[] args) {
-        int[] arr={1,4,3,2,6,8,2};
-        int[] arr1={1,2,3,5,6,7,8};
-        isAnagram("listen","silents");
-        firstNonRepeatingCharacterOptimized("aabbcdde");
+        int[] arr={1,1,3,3,6,7,8};
+        int[] arr1={0,0,0,2,3,0,4,5,6};
+        //moveZerosToEnd(arr1);
+        //twoSumWithoutDuplicate(arr,5);
+        //isAnagram("listen","silents");
+       // firstNonRepeatingCharacterOptimized("aabbcdde");
        // findTheMissingNum(arr1);
         //firstNonRepeatingCharacter("Annnu");
        // frequencyCount(arr);
-        //removeDuplicates(arr);
+        removeDuplicates(arr);
         /*secondLargest(arr);
         swapTwoNumWithTemp(5,10);
         swapWithoutTemp(-5,10);*/
@@ -225,20 +227,33 @@ public class Beginner {
     }
 
     static void removeDuplicates(int[] arr){
+        System.out.println("Array : "+Arrays.toString(arr));
         int j = 0;
 
         for(int i = 1; i < arr.length; i++){
             System.out.println("J1 : "+j);
             if(arr[i] != arr[j]){
                 j++;
-                System.out.println("J2 : "+j);
+                System.out.println("if I : "+i);
+                System.out.println("if J : "+j);
+                System.out.println("a[i] : "+arr[i]);
+                System.out.println("a[j] : "+arr[j]);
+                System.out.println("==========================================");
                 arr[j] = arr[i];
             }
         }
-
+        System.out.println("Array : : "+Arrays.toString(arr));
         System.out.println("ARRAYS ARE : "+Arrays.toString(Arrays.copyOf(arr, j+1)));
     }
+    static void removeDuplicatesUnsorted(int[] arr){
+        Set<Integer> set = new LinkedHashSet<>();
+        //Arrays.sort(arr);
+        for(int num : arr){
+            set.add(num);
+        }
 
+        System.out.println(set);
+    }
     static  void frequencyCount(int[] arr){
         Map<Integer, Integer> countMap= new HashMap<>();
         for(Integer num : arr){
@@ -322,7 +337,80 @@ public class Beginner {
 
         System.out.println("Anagram ✅");
     }
+
+    public static void twoSumWithoutDuplicate(int[] arr, int target) {
+        System.out.println("Array: " + Arrays.toString(arr));
+
+        Map<Integer, Integer> map = new HashMap<>();
+        Set<String> seenPairs = new HashSet<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int needed = target - arr[i];
+
+            if (map.containsKey(needed)) {
+
+                int a = Math.min(arr[i], needed);
+                int b = Math.max(arr[i], needed);
+
+                String pair = a + "," + b;
+
+                if (!seenPairs.contains(pair)) {
+                    System.out.println("Pair found: " + a + " + " + b);
+                    seenPairs.add(pair);
+                }
+            }
+
+            map.put(arr[i], i);
+        }
+    }
+    public static void twoSumDuplicatePair(int[] arr, int target) {
+        System.out.println("Array: " + Arrays.toString(arr));
+
+        Map<Integer, Integer> map = new HashMap<>();
+        boolean found = false;
+
+        for (int i = 0; i < arr.length; i++) {
+            int needed = target - arr[i];
+
+            if (map.containsKey(needed)) {
+                System.out.println("Pair found: " + needed + " + " + arr[i]);
+                found = true;
+            }
+
+            map.put(arr[i], i);
+        }
+
+        if (!found) {
+            System.out.println("No pair found");
+        }
+    }
+    static void moveZerosToEnd(int[] arr) {
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                j++;
+            }
+        }
+        System.out.println("Move zeros to end "+Arrays.toString(arr));
+    }
 }
+ /*public static void twoSum(int[] arr,int target){
+        System.out.println("Array : "+Arrays.toString(arr));
+        Map<Integer,Integer> count = new HashMap<>();
+        int j=1;
+        for (int k : arr) {
+            //&& !count.containsValue(k) && !count.containsValue(arr[j])
+            if (k + arr[j] == target) {
+                count.put(k, k);
+                count.put(arr[j], arr[j]);
+                j++;
+            }
+        }
+        System.out.println("Sums are : "+count);
+    }*/
 /*static void firstNonRepeatingCharacter(String str) {
         Map<Character, Integer> countMap = new LinkedHashMap<>();
         char c = '0';
