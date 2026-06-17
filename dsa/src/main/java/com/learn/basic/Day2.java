@@ -1,5 +1,7 @@
 package com.learn.basic;
 
+import java.util.Arrays;
+
 import static java.lang.Math.min;
 
 public class Day2 {
@@ -7,7 +9,9 @@ public class Day2 {
 
         //fibonacciSeries(7);
         //System.out.println(gcd(1000,500));
-        System.out.println(strongNumber(1452));
+       // System.out.println(strongNumber(1452));
+        int arr[]={1,2,3,4,5};
+        System.out.println(Arrays.toString(reverseAnArray(arr)));
     }
     public static void fibonacciSeries(int n){
         int previous =0;
@@ -64,5 +68,19 @@ public class Day2 {
             factorial=factorial*i;
         }
         return factorial;
+    }
+
+    static int[] reverseAnArray(int[] arr){
+        
+        int start = 0;
+        int end = arr.length-1;
+        while(start<end){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
+        return arr;
     }
 }
