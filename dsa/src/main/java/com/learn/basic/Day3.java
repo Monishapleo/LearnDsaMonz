@@ -8,7 +8,6 @@ public class Day3 {
         //System.out.println(rangeOfArray(arr));
         System.out.println(numberThatAppearOnce(arr));
     }
-
     public static int smallestElementIndex(int[] arr){
         if(arr == null || arr.length == 0){
             return -1;
@@ -337,15 +336,17 @@ public class Day3 {
         if(arr == null || arr.length==0){
             return -1;
         }
-        int count =0;
+
         for(int i=0; i<arr.length; i++){
-            for(int j=i+1; j<arr.length;j++){
+            int count =0;
+            for(int j=0; j<arr.length;j++){
                 if(arr[i]==arr[j]){
                    count++;
                 }
-
             }
-
+            if(count==1){
+                return arr[i];
+            }
         }
         return -1;
 
